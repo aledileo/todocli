@@ -1,23 +1,21 @@
 const { Command } = require('@oclif/command');
-const chalk = require("chalk");
-const eol = require("os").EOL;
-const { initialCheck, check, list } = require('../controller/todo-controller');
+const eol = require('os').EOL;
+const chalk = require('chalk');
+const { initialCheck, remove, list } = require('../controller/todo-controller');
 
 const checkChar = '\u2713 ';
 const isValidNumber = arg => isNaN(Number(arg));
 
-class Check extends Command {
+class Remove extends Command {
   async run() {
-    const { args } = this.parse(Check);
+    const { args } = this.parse(Remove);
     initialCheck();
-
     let todos = list();
     const isValidArg = todos[args.todoIndex - 1] === undefined || isValidNumber(args.todoIndex); 
-
     if (isValidArg) {
       this.log(chalk.red(`${eol}Sorry! The given index didn\'t match any Todo${eol}`));
     } else {
-      check(args.todoIndex);
+      remove(Number(args.todoIndex - 1));
       todos = list();
       this.log(chalk.magenta(`${eol}Todos:`));
       todos.forEach(
@@ -30,8 +28,8 @@ class Check extends Command {
   }
 }
 
-Check.description = 'Checks or uncheckd a Todo';
+Remove.description = 'Removes a Todo in given index';
 
-Check.args = [{ name: 'todoIndex' }]
+Remove.args = [{ name: 'todoIndex' }]
 
-module.exports = Check;
+module.exports = Remove;

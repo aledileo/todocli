@@ -16,7 +16,7 @@ class List extends Command {
       this.log(chalk.magenta(`${eol}Todos:`));
       todos.forEach(
         ({ todo, done }, i) => 
-          !done
+          done
           ? this.log(`  ${i + 1}. ${chalk.green(checkChar)}${todo}`)
           : this.log(`  ${i + 1}. ${todo}`)
         );

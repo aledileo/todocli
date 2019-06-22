@@ -26,7 +26,6 @@ function saveTodos() {
 function add(todo) {
   const newTodo = { todo: todo, done: false };
   todos = [...todos, newTodo];
-  console.log(todos);
   saveTodos();
 }
 
@@ -44,4 +43,11 @@ function check(todoIndex) {
   saveTodos();
 }
 
-module.exports = { initialCheck, add, list, check };
+function remove(todoIndex) {
+  todos = todos.filter(
+    (todo, i) => i !== todoIndex
+  );
+  saveTodos();
+}
+
+module.exports = { initialCheck, add, list, check, remove };
