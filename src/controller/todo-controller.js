@@ -28,4 +28,9 @@ function list() {
   return todos;
 }
 
-module.exports = { initialCheck, add, list };
+function check(todoIndex) {
+  todos = todos.map((todo, i) => i === todoIndex - 1 ? {...todo, done: !todo.done} : todo);
+  saveTodos();
+}
+
+module.exports = { initialCheck, add, list, check };
