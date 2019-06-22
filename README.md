@@ -19,7 +19,7 @@ $ npm install -g todo
 $ todo COMMAND
 running command...
 $ todo (-v|--version|version)
-todo/0.0.0 linux-x64 node-v12.0.0
+todo/0.1.0 linux-x64 node-v12.0.0
 $ todo --help [COMMAND]
 USAGE
   $ todo COMMAND
@@ -28,26 +28,33 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`todo hello`](#todo-hello)
+* [`todo add [TODO]`](#todo-add-todo)
+* [`todo check [TODOINDEX]`](#todo-check-todoindex)
 * [`todo help [COMMAND]`](#todo-help-command)
+* [`todo list`](#todo-list)
+* [`todo remove [TODOINDEX]`](#todo-remove-todoindex)
 
-## `todo hello`
+## `todo add [TODO]`
 
-Describe the command here
+Adds a Todo
 
 ```
 USAGE
-  $ todo hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
+  $ todo add [TODO]
 ```
 
-_See code: [src/commands/hello.js](https://github.com/aledileo/todo/blob/v0.0.0/src/commands/hello.js)_
+_See code: [src/commands/add.js](https://github.com/aledileo/todo/blob/v0.1.0/src/commands/add.js)_
+
+## `todo check [TODOINDEX]`
+
+Checks or uncheckd a Todo
+
+```
+USAGE
+  $ todo check [TODOINDEX]
+```
+
+_See code: [src/commands/check.js](https://github.com/aledileo/todo/blob/v0.1.0/src/commands/check.js)_
 
 ## `todo help [COMMAND]`
 
@@ -65,4 +72,26 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.0/src/commands/help.ts)_
+
+## `todo list`
+
+Lists all Todos
+
+```
+USAGE
+  $ todo list
+```
+
+_See code: [src/commands/list.js](https://github.com/aledileo/todo/blob/v0.1.0/src/commands/list.js)_
+
+## `todo remove [TODOINDEX]`
+
+Removes a Todo in given index
+
+```
+USAGE
+  $ todo remove [TODOINDEX]
+```
+
+_See code: [src/commands/remove.js](https://github.com/aledileo/todo/blob/v0.1.0/src/commands/remove.js)_
 <!-- commandsstop -->
