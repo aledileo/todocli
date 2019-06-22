@@ -3,31 +3,26 @@ const path = require('path');
 const os = require('os');
 
 const todoFile = path.join(os.homedir(), 'checkme', 'todos.json');
+let todos = [];
 
-class BaseTodoController {
-  todos = [];
-
-  constructor() {
-    if (fs.existsSync(path.dirname(todoFile))) {
-      this.todos = JSON.parse(fs.readFileSync(todoFile, { encoding: 'utf-8' }));
-    }
-  }
-
-  saveTodos() {
-    if (!fs.existsSync(path.dirname(todoFile))) {
+function initialCheck() {
+  if (!fs.existsSync(path.dirname(todoFile))) {
       fs.mkdirSync(path.dirname(todoFile));
-    }
-    const data = JSON.stringify(this.todos);
-    fs.writeFileSync(todoFile, data, { encoding: 'utf-8' });
+    } else {
+      todos = JSON.parse(fs.readFileSync(todoFile, { encoding: 'utf-8' }));
   }
+};
 
-  add(todo) {
-    const newTodo = { todo: todo, done: false };
-    this.todos = [...this.todos, newTodo];
-    this.saveTodos();
-  }
+function saveTodos() {
+  const data = JSON.stringify(todos);
+  fs.writeFileSync(todoFile, data, { encoding: 'utf-8' });
+}
 
+function add(todo) {
+  const newTodo = { todo: todo, done: false };
+  todos = [...todos, newTodo];
+  saveTodos();
 }
 
 
-module.exports = BaseTodoController;
+module.exports = { initialCheck, add };
