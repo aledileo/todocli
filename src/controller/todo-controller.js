@@ -24,5 +24,8 @@ function add(todo) {
   saveTodos();
 }
 
+function list() {
+  return todos;
+}
 
-module.exports = { initialCheck, add };
+module.exports = { initialCheck, add, list };
